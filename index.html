@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Christmas Card Maker</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!-- Malayalam font -->
+  <!-- Malayalam + Serif -->
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Malayalam&display=swap" rel="stylesheet">
 
   <!-- Icons -->
   <link rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
 
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
@@ -24,26 +24,26 @@
   <!-- Frame background -->
   <div class="bg-frame"></div>
 
-  <div class="app">
+  <main class="app">
 
     <!-- Card Preview -->
-    <div class="card" id="card">
-      <img id="cardImage" alt="Christmas Image">
+    <section class="card" id="card">
+      <img id="cardImage" alt="Christmas Image" />
       <h2 id="cardName">Merry Christmas 🎄</h2>
       <p id="cardMessage">
         May this Christmas bring peace, love, and joy.
       </p>
-    </div>
+    </section>
 
     <!-- Inputs -->
-    <input id="nameInput" placeholder="Your name / നിങ്ങളുടെ പേര്">
+    <input id="nameInput" placeholder="Your name / നിങ്ങളുടെ പേര്" />
     <textarea id="msgInput" placeholder="Your Christmas message / നിങ്ങളുടെ സന്ദേശം"></textarea>
 
-    <!-- Action buttons (single row) -->
+    <!-- Actions -->
     <div class="actions">
       <button onclick="createCard()">Create</button>
       <button onclick="downloadCard()">Download</button>
-      <button onclick="shareLink()">Share Link</button>
+      <button onclick="shareLink()">Share</button>
 
       <button class="icon-btn wa" onclick="shareWhatsApp()">
         <i class="fab fa-whatsapp"></i>
@@ -54,9 +54,9 @@
       </button>
     </div>
 
-  </div>
+  </main>
 
-  <canvas id="canvas" width="1080" height="1350" style="display:none"></canvas>
+  <canvas id="canvas" width="1080" height="1350" hidden></canvas>
 
   <script src="script.js"></script>
 </body>
