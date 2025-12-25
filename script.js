@@ -18,32 +18,31 @@ const cardMessage = document.getElementById("cardMessage");
 const nameInput = document.getElementById("nameInput");
 const msgInput = document.getElementById("msgInput");
 
-/* LIVE PREVIEW */
+/* Live preview */
 nameInput.addEventListener("input", () => {
   cardName.innerText = nameInput.value || "Merry Christmas 🎄";
 });
 
 msgInput.addEventListener("input", () => {
-  cardMessage.innerText = msgInput.value ||
-    "May this Christmas bring peace, love, and joy.";
+  cardMessage.innerText =
+    msgInput.value || "May this Christmas bring peace, love, and joy.";
 });
 
-/* CREATE CARD (URL update) */
+/* Create (URL) */
 function createCard() {
-  const name = cardName.innerText;
-  const msg = cardMessage.innerText;
-
   const url =
     `${location.origin}${location.pathname}?` +
-    `name=${encodeURIComponent(name)}&msg=${encodeURIComponent(msg)}&img=${imgIndex}`;
+    `name=${encodeURIComponent(cardName.innerText)}` +
+    `&msg=${encodeURIComponent(cardMessage.innerText)}` +
+    `&img=${imgIndex}`;
 
   history.replaceState(null, "", url);
 }
 
-/* SHARE */
+/* Share */
 function shareLink() {
   navigator.clipboard.writeText(location.href);
-  alert("Card link copied. Share anywhere.");
+  alert("Link copied. Share anywhere.");
 }
 
 function shareWhatsApp() {
@@ -53,10 +52,10 @@ function shareWhatsApp() {
 
 function shareInstagram() {
   navigator.clipboard.writeText(location.href);
-  alert("Instagram doesn’t allow direct sharing.\nLink copied — paste in DM, bio, or story.");
+  alert("Instagram doesn’t allow direct sharing.\nLink copied to clipboard.");
 }
 
-/* DOWNLOAD */
+/* Download */
 function downloadCard() {
   const canvas = document.getElementById("canvas");
   const ctx = canvas.getContext("2d");
@@ -66,17 +65,41 @@ function downloadCard() {
   img.src = cardImage.src;
 
   img.onload = () => {
-    ctx.fillStyle = "#fff";
-    ctx.fillRect(0,0,canvas.width,canvas.height);
-    ctx.drawImage(img, 0, 0, canvas.width, 600);
+    /* Background */
+    const gradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
+    gradient.addColorStop(0, "#fffaf2");
+    gradient.addColorStop(1, "#ffffff");
+    ctx.fillStyle = gradient;
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-    ctx.fillStyle = "#000";
+    /* Image */
+    ctx.drawImage(img, 0, 0, canvas.width, 720);
+
+    /* Fade */
+    const fade = ctx.createLinearGradient(0, 700, 0, 820);
+    fade.addColorStop(0, "rgba(255,255,255,0)");
+    fade.addColorStop(1, "rgba(255,255,255,1)");
+    ctx.fillStyle = fade;
+    ctx.fillRect(0, 700, canvas.width, 120);
+
+    /* Name */
+    ctx.fillStyle = "#2b2b2b";
     ctx.textAlign = "center";
-    ctx.font = "bold 60px Georgia";
-    ctx.fillText(cardName.innerText, canvas.width/2, 700);
+    ctx.font = "bold 64px Georgia";
+    ctx.fillText(cardName.innerText, canvas.width / 2, 860);
 
-    ctx.font = "42px Georgia";
-    wrap(ctx, cardMessage.innerText, canvas.width/2, 780, 900, 56);
+    /* Divider */
+    ctx.strokeStyle = "rgba(200,150,80,.5)";
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    ctx.moveTo(canvas.width / 2 - 120, 890);
+    ctx.lineTo(canvas.width / 2 + 120, 890);
+    ctx.stroke();
+
+    /* Message */
+    ctx.font = "44px Georgia";
+    ctx.fillStyle = "#444";
+    wrap(ctx, cardMessage.innerText, canvas.width / 2, 950, 860, 58);
 
     const a = document.createElement("a");
     a.download = "christmas-card.png";
@@ -99,7 +122,7 @@ function wrap(ctx, text, x, y, max, lh) {
   ctx.fillText(line, x, y);
 }
 
-/* LOAD FROM SHARED LINK */
+/* Load shared card */
 const params = new URLSearchParams(location.search);
 if (params.get("name")) {
   cardName.innerText = params.get("name");
