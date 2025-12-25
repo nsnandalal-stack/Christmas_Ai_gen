@@ -1,28 +1,48 @@
-const images=["images/nativity1.jpg","images/nativity2.jpg","images/nativity3.jpg"];
-let i=0;
-document.body.style.backgroundImage=`url(${images[0]})`;
-setInterval(()=>{i=(i+1)%images.length;document.body.style.backgroundImage=`url(${images[i]})`;},5000);
+/* -----------------------------
+   Rotating Nativity Background
+-------------------------------- */
 
-const gifs=["gifs/jesus1.gif","gifs/jesus2.gif","gifs/jesus3.gif"];
-let g=0;
-setInterval(()=>{g=(g+1)%gifs.length;document.getElementById("jesusGif").src=gifs[g];},7000);
+const backgrounds = [
+  "images/nativity1.jpg",
+  "images/nativity2.jpg",
+  "images/nativity3.jpg"
+];
 
-const p=new URLSearchParams(window.location.search);
-if(p.get("wish")) document.getElementById("defaultWish").innerText=decodeURIComponent(p.get("wish"));
+let bgIndex = 0;
+document.body.style.backgroundImage = `url(${backgrounds[0]})`;
 
-function shareWhatsApp(){
-const w=document.getElementById("userWish").value||document.getElementById("defaultWish").innerText;
-const link=location.origin+location.pathname+"?wish="+encodeURIComponent(w);
-window.open(`https://wa.me/?text=${encodeURIComponent(w+"\n"+link)}`,"_blank");
-}
+setInterval(() => {
+  bgIndex = (bgIndex + 1) % backgrounds.length;
+  document.body.style.backgroundImage = `url(${backgrounds[bgIndex]})`;
+}, 5000);
 
-function copyLink(){
-const w=document.getElementById("userWish").value||document.getElementById("defaultWish").innerText;
-const link=location.origin+location.pathname+"?wish="+encodeURIComponent(w);
-navigator.clipboard.writeText(link);
-alert("Link copied!");
-}
 
-if("serviceWorker"in navigator){
-navigator.serviceWorker.register("service-worker.js");
-}
+/* -----------------------------
+   Jesus Birth GIF (Single Frame)
+-------------------------------- */
+
+const jesusGifs = [
+  "gifs/jesus1.gif",
+  "gifs/jesus2.gif",
+  "gifs/jesus3.gif"
+];
+
+let gifIndex = 0;
+
+setInterval(() => {
+  gifIndex = (gifIndex + 1) % jesusGifs.length;
+  const img = document.getElementById("jesusGif");
+  if (img) img.src = jesusGifs[gifIndex];
+}, 7000);
+
+
+/* -----------------------------
+   Load Shared Name + Message
+-------------------------------- */
+
+const params = new URLSearchParams(window.location.search);
+const nameParam = params.get("name");
+const msgParam = params.get("msg");
+
+if (nameParam && msgParam) {
+  document.getElementById("defaultWish").innerT
