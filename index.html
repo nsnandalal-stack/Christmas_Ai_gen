@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Christmas Card Maker</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Malayalam&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
@@ -15,21 +15,26 @@
   <main class="container">
 
     <div class="card">
-      <img id="cardImage" crossorigin="anonymous">
+      <img id="cardImage" crossorigin="anonymous" />
       <h1 id="cardTitle">Merry Christmas 🎄</h1>
       <p id="cardMessage">May this Christmas bring peace, love, and joy.</p>
     </div>
 
-    <input id="nameInput" placeholder="Your name / നിങ്ങളുടെ പേര്">
+    <input id="nameInput" placeholder="Your name / നിങ്ങളുടെ പേര്" />
     <textarea id="messageInput" placeholder="Your Christmas message / നിങ്ങളുടെ സന്ദേശം"></textarea>
 
     <div class="actions">
       <button onclick="downloadCard()">Download</button>
       <button onclick="shareWhatsApp()">WhatsApp</button>
-      <button onclick="goInstagram()">Instagram</button>
+      <button onclick="openInstagram()">Instagram</button>
     </div>
 
   </main>
+
+  <!-- Santa ellipse (no layout change) -->
+  <div class="santa-ellipse">
+    <img src="https://raw.githubusercontent.com/nsnandalal-stack/Christmas_Ai_gen/main/Santa_claus.png" />
+  </div>
 
   <canvas id="canvas" width="1080" height="1350" hidden></canvas>
   <script src="script.js"></script>
