@@ -1,17 +1,11 @@
-/* Santa image matching snowy background */
+/* Santa image used on the card (local asset recommended) */
 const images = [
-  "https://images.pexels.com/photos/6195121/pexels-photo-6195121.jpeg", // Santa + snow
-  "https://images.pexels.com/photos/7168805/pexels-photo-7168805.jpeg"
+  "assets/how-old-is-santa-claus.avif"
 ];
 
 let imgIndex = 0;
 const cardImage = document.getElementById("cardImage");
 cardImage.src = images[0];
-
-setInterval(() => {
-  imgIndex = (imgIndex + 1) % images.length;
-  cardImage.src = images[imgIndex];
-}, 6000);
 
 const cardName = document.getElementById("cardName");
 const cardMessage = document.getElementById("cardMessage");
@@ -28,19 +22,19 @@ msgInput.addEventListener("input", () => {
     msgInput.value || "May this Christmas bring peace, love, and joy.";
 });
 
-/* WhatsApp */
+/* WhatsApp share */
 function shareWhatsApp() {
   const text = `🎄 Merry Christmas!\n${location.href}`;
   window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, "_blank");
 }
 
-/* Instagram */
+/* Instagram (copy link) */
 function shareInstagram() {
   navigator.clipboard.writeText(location.href);
   alert("Link copied. Paste it in Instagram DM, bio, or story.");
 }
 
-/* Download */
+/* Download card */
 function downloadCard() {
   const canvas = document.getElementById("canvas");
   const ctx = canvas.getContext("2d");
