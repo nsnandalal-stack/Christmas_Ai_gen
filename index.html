@@ -1,33 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Christmas Card Maker</title>
-<link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8" />
+  <title>Christmas Card Maker</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-<div class="snow"></div>
+<div class="snow-bg"></div>
 
-<div class="container">
+<div class="card-wrapper">
   <div id="card" class="card">
-    <img id="media" class="card-media" />
-    <h1 id="title">Merry Christmas 🎄</h1>
-    <p id="msg">May this Christmas bring peace, love, and joy.</p>
+    <img id="cardImage" class="card-image" />
+    <div class="card-text">
+      <h1 id="title">Merry Christmas 🎄</h1>
+      <p id="message">May this Christmas bring peace, love, and joy.</p>
+    </div>
   </div>
 
-  <!-- Santa placed AT the circle position -->
-  <img class="santa-float"
-    src="https://raw.githubusercontent.com/nsnandalal-stack/Christmas_Ai_gen/main/Santa_claus.png" />
+  <img src="assets/Santa_claus.png" class="santa-side" />
+</div>
 
-  <input id="nameInput" placeholder="Your name / നിങ്ങളുടെ പേര്">
-  <textarea id="msgInput" placeholder="Your message / നിങ്ങളുടെ സന്ദേശം"></textarea>
+<div class="inputs">
+  <input id="nameInput" placeholder="Your name / നിങ്ങളുടെ പേര്" />
+  <textarea id="msgInput" placeholder="Message / സന്ദേശം"></textarea>
 
   <div class="actions">
     <button onclick="downloadCard()">Download</button>
     <button onclick="shareWhatsApp()">WhatsApp</button>
-    <button onclick="shareInstagram()">Instagram</button>
+    <button onclick="openInstagram()">Instagram</button>
   </div>
 </div>
 
