@@ -1,42 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Christmas Card Maker</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Malayalam&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css" />
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Christmas Card Maker</title>
+<link rel="stylesheet" href="style.css" />
 </head>
-
 <body>
-  <div class="snow"></div>
-  <div class="snow snow2"></div>
 
-  <main class="container">
+<div class="snow"></div>
 
-    <div class="card">
-      <img id="cardImage" crossorigin="anonymous" />
-      <h1 id="cardTitle">Merry Christmas 🎄</h1>
-      <p id="cardMessage">May this Christmas bring peace, love, and joy.</p>
-    </div>
-
-    <input id="nameInput" placeholder="Your name / നിങ്ങളുടെ പേര്" />
-    <textarea id="messageInput" placeholder="Your Christmas message / നിങ്ങളുടെ സന്ദേശം"></textarea>
-
-    <div class="actions">
-      <button onclick="downloadCard()">Download</button>
-      <button onclick="shareWhatsApp()">WhatsApp</button>
-      <button onclick="openInstagram()">Instagram</button>
-    </div>
-
-  </main>
-
-  <!-- Santa ellipse (no layout change) -->
-  <div class="santa-ellipse">
-    <img src="https://raw.githubusercontent.com/nsnandalal-stack/Christmas_Ai_gen/main/Santa_claus.png" />
+<div class="container">
+  <div id="card" class="card">
+    <img id="media" class="card-media" />
+    <h1 id="title">Merry Christmas 🎄</h1>
+    <p id="msg">May this Christmas bring peace, love, and joy.</p>
   </div>
 
-  <canvas id="canvas" width="1080" height="1350" hidden></canvas>
-  <script src="script.js"></script>
+  <!-- Santa placed AT the circle position -->
+  <img class="santa-float"
+    src="https://raw.githubusercontent.com/nsnandalal-stack/Christmas_Ai_gen/main/Santa_claus.png" />
+
+  <input id="nameInput" placeholder="Your name / നിങ്ങളുടെ പേര്">
+  <textarea id="msgInput" placeholder="Your message / നിങ്ങളുടെ സന്ദേശം"></textarea>
+
+  <div class="actions">
+    <button onclick="downloadCard()">Download</button>
+    <button onclick="shareWhatsApp()">WhatsApp</button>
+    <button onclick="shareInstagram()">Instagram</button>
+  </div>
+</div>
+
+<script src="script.js"></script>
 </body>
 </html>
