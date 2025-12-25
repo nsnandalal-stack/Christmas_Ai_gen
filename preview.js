@@ -1,30 +1,19 @@
 const params = new URLSearchParams(location.search);
-const name = params.get("name") || "";
-const msg = params.get("msg") || "";
+const name = params.get("name") || "Friend";
+const msg = params.get("msg") || "Wishing you a Merry Christmas and a Happy New Year!";
 
-document.getElementById("previewCard").innerHTML = `
-  <img src="assets/Santa_claus.png" class="card-image">
-  <div class="card-text">
-    <h1>Merry Christmas 🎄 — ${name}</h1>
-    <p>${msg}</p>
-  </div>
-`;
+// Populate the letter
+document.getElementById("pTitle").innerText = `Merry Christmas, ${name}!`;
+document.getElementById("pMsg").innerText = msg;
+document.getElementById("pFooter").innerText = "Sent with ❤️ using Card Maker";
 
+// Trigger Animation on Load
 window.addEventListener("load", () => {
   setTimeout(() => {
     document.getElementById("envelope").classList.add("open");
-  }, 300);
+  }, 500); // 0.5s delay before opening
 });
 
-function copyLink() {
-  navigator.clipboard.writeText(location.href);
-  alert("Link copied");
-}
-
 function shareWhatsApp() {
-  window.open(`https://wa.me/?text=${encodeURIComponent(location.href)}`);
-}
-
-function openInstagram() {
-  window.open("https://www.instagram.com/");
+  window.open(`https://wa.me/?text=${encodeURIComponent(location.href)}`, '_blank');
 }
