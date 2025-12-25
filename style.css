@@ -16,72 +16,39 @@ body {
   background-size: 120px 120px;
   animation: snow 20s linear infinite;
   opacity: 0.6;
+  z-index: 0;
 }
 
-.snow2 { animation-duration: 35s; opacity: 0.3; }
+.snow2 {
+  animation-duration: 35s;
+  opacity: 0.3;
+}
 
 @keyframes snow {
   from { transform: translateY(-50%); }
   to { transform: translateY(50%); }
 }
 
-/* BIG Santa */
-.big-santa {
-  position: fixed;
-  bottom: -30px;
-  right: -40px;
-  font-size: 220px;
-  opacity: 0.18;
-  pointer-events: none;
-  z-index: 1;
-  animation: santaWave 4s ease-in-out infinite;
-  transform-origin: bottom center;
-}
-
-.big-santa::after {
-  content: "Hi!";
-  position: absolute;
-  top: 40px;
-  left: -40px;
-  font-size: 32px;
-  background: rgba(255,255,255,0.8);
-  color: #000;
-  padding: 6px 10px;
-  border-radius: 10px;
-}
-
-@keyframes santaWave {
-  0%   { transform: rotate(0deg) translateY(0); }
-  25%  { transform: rotate(-5deg) translateY(-5px); }
-  50%  { transform: rotate(5deg) translateY(0); }
-  75%  { transform: rotate(-5deg) translateY(-5px); }
-  100% { transform: rotate(0deg) translateY(0); }
-}
-
-/* Floating characters */
-.characters {
+/* Santa Frame Background with Motion */
+.santa-frame-bg {
   position: fixed;
   inset: 0;
+  background-image: url("assets/santa-frame.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  z-index: 1;
   pointer-events: none;
+  animation: frameFloat 6s ease-in-out infinite;
 }
 
-.char {
-  position: absolute;
-  font-size: 48px;
-  animation: float 12s ease-in-out infinite;
-  opacity: 0.8;
-}
-
-.angel { left: 8%; top: 35%; }
-.star  { left: 50%; top: 15%; animation-delay: 4s; }
-
-@keyframes float {
-  0% { transform: translateY(0); }
-  50% { transform: translateY(-30px); }
+@keyframes frameFloat {
+  0%   { transform: translateY(0); }
+  50%  { transform: translateY(-8px); }
   100% { transform: translateY(0); }
 }
 
-/* App */
+/* App container */
 .app {
   position: relative;
   z-index: 2;
@@ -95,10 +62,11 @@ body {
 /* Card */
 .card {
   width: 320px;
-  border-radius: 14px;
-  overflow: hidden;
+  background: rgba(255,255,255,0.95);
+  border-radius: 12px;
   box-shadow: 0 20px 40px rgba(0,0,0,.4);
   text-align: center;
+  overflow: hidden;
 }
 
 .card img {
@@ -109,19 +77,20 @@ body {
 
 .card h2, .card p {
   margin: 12px;
+  color: #000;
 }
 
-/* Templates */
-.card.classic { background: #fff; color: #000; }
-.card.night   { background: #1a1a2e; color: #fff; }
-.card.festive { background: #fff7e6; color: #7a3e00; }
-
-input, textarea, select {
+/* Inputs */
+input, textarea {
   width: 300px;
   margin-top: 10px;
   padding: 10px;
   border-radius: 8px;
   border: none;
+}
+
+textarea {
+  resize: none;
 }
 
 button {
