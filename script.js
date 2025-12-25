@@ -1,46 +1,51 @@
-const images = [
-  "https://media1.giphy.com/media/G4TM38TROaeGj5pkXh/giphy.gif",
-  "https://media2.giphy.com/media/gNke2UrUTopOg/giphy.gif"
-];
+// Live Preview Logic
+const nameInput = document.getElementById('nameInput');
+const msgInput = document.getElementById('msgInput');
+const cardName = document.getElementById('cardName');
+const cardMessage = document.getElementById('cardMessage');
 
-let current = 0;
-const cardImage = document.getElementById("cardImage");
-cardImage.src = images[current];
+nameInput.addEventListener('input', () => {
+    cardName.textContent = nameInput.value || "Your Name";
+});
 
-setInterval(() => {
-  current = (current + 1) % images.length;
-  cardImage.src = images[current];
-}, 4000);
+msgInput.addEventListener('input', () => {
+    cardMessage.textContent = msgInput.value || "May this Christmas bring peace, love, and joy.";
+});
 
-nameInput.oninput = e =>
-  title.innerText = `Merry Christmas 🎄 — ${e.target.value}`;
-
-msgInput.oninput = e =>
-  message.innerText = e.target.value;
-
+// Download Logic
 function downloadCard() {
-  import("https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js")
-    .then(() => {
-      html2canvas(document.getElementById("card")).then(canvas => {
-        const a = document.createElement("a");
-        a.href = canvas.toDataURL("image/png");
-        a.download = "christmas-card.png";
-        a.click();
-      });
+    const card = document.getElementById('card');
+    html2canvas(card).then(canvas => {
+        const link = document.createElement('a');
+        link.download = 'Christmas_Card.png';
+        link.href = canvas.toDataURL();
+        link.click();
     });
 }
 
-function copyPreviewLink() {
-  const link = `${location.origin}${location.pathname.replace("index.html","")}preview.html?name=${encodeURIComponent(nameInput.value)}&msg=${encodeURIComponent(msgInput.value)}`;
-  navigator.clipboard.writeText(link);
-  alert("Preview link copied!");
-}
-
+// WhatsApp Share (Link)
 function shareWhatsApp() {
-  const link = `${location.origin}${location.pathname.replace("index.html","")}preview.html?name=${encodeURIComponent(nameInput.value)}&msg=${encodeURIComponent(msgInput.value)}`;
-  window.open(`https://wa.me/?text=${encodeURIComponent(link)}`);
+    const url = createShareLink();
+    window.open(`https://wa.me/?text=Check out this Christmas card I made for you! 🎄 ${encodeURIComponent(url)}`, '_blank');
 }
 
+// Copy Link
+function copyPreviewLink() {
+    const url = createShareLink();
+    navigator.clipboard.writeText(url).then(() => {
+        alert('Link copied to clipboard! Send it to your friends.');
+    });
+}
+
+// Open Instagram
 function openInstagram() {
-  window.open("https://www.instagram.com/");
+    window.open("https://www.instagram.com/", '_blank');
+}
+
+// Helper to create the share URL
+function createShareLink() {
+    const baseUrl = window.location.href.replace('index.html', '').replace(/\/$/, '') + '/preview.html';
+    const name = encodeURIComponent(nameInput.value || "Friend");
+    const msg = encodeURIComponent(msgInput.value || "Merry Christmas!");
+    return `${baseUrl}?name=${name}&msg=${msg}`;
 }
