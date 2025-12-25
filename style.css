@@ -8,7 +8,7 @@ body {
 }
 
 .overlay {
-  background: rgba(0, 0, 0, 0.55);
+  background: rgba(0,0,0,0.55);
   color: #fff;
   height: 100%;
   padding: 20px;
@@ -24,10 +24,6 @@ body {
   right: 10px;
 }
 
-.lang-toggle button {
-  margin-left: 6px;
-}
-
 input, textarea {
   margin-top: 12px;
   padding: 12px;
@@ -36,9 +32,7 @@ input, textarea {
   border: none;
 }
 
-textarea {
-  resize: none;
-}
+textarea { resize: none; }
 
 button {
   margin: 6px;
@@ -77,7 +71,7 @@ button {
   100% { box-shadow: 0 0 35px rgba(255,200,120,.3); }
 }
 
-/* Snowfall */
+/* Snow */
 .snow {
   position: fixed;
   top: -100vh;
