@@ -28,38 +28,23 @@ body {
   to   { transform: translateY(50%); }
 }
 
-/* Corner Santa */
-.corner-santa {
-  position: fixed;
-  bottom: 12px;
-  left: 12px;
-  width: 120px;
-  z-index: 1;
-  pointer-events: none;
-  animation: santaFloat 6s ease-in-out infinite;
-}
-
-.corner-santa img {
-  width: 100%;
-  height: auto;
-}
-
-@keyframes santaFloat {
-  0% { transform: translateY(0); }
-  50% { transform: translateY(-6px); }
-  100% { transform: translateY(0); }
-}
-
 /* App */
 .app {
   position: relative;
   z-index: 2;
   min-height: 100vh;
-  padding: 28px 16px 40px;
+  padding: 32px 16px 40px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+}
+
+/* Card + Santa layout */
+.layout {
+  display: flex;
+  align-items: flex-end;
+  gap: 24px;
 }
 
 /* Card */
@@ -110,11 +95,29 @@ body {
   color: #444;
 }
 
+/* Side Santa */
+.side-santa {
+  width: 180px;
+  animation: santaFloat 6s ease-in-out infinite;
+}
+
+.side-santa img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+@keyframes santaFloat {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+  100% { transform: translateY(0); }
+}
+
 /* Inputs */
 input, textarea {
   width: 100%;
-  max-width: 360px;
-  margin-top: 12px;
+  max-width: 380px;
+  margin-top: 14px;
   padding: 12px;
   border-radius: 10px;
   border: none;
@@ -150,7 +153,15 @@ button {
 .wa { background: #25d366; color: #fff; }
 .ig { background: #e1306c; color: #fff; }
 
-/* Desktop spacing */
-@media (min-width: 768px) {
-  .app { padding-top: 48px; }
+/* Mobile: Santa goes below card */
+@media (max-width: 768px) {
+  .layout {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .side-santa {
+    width: 140px;
+    margin-top: 12px;
+  }
 }
