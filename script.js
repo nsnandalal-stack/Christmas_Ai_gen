@@ -4,18 +4,21 @@ const cardTitle = document.getElementById("cardTitle");
 const cardMessage = document.getElementById("cardMessage");
 const cardImage = document.getElementById("cardImage");
 
-const images = [
+const visuals = [
   "https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExbng3bmxzNTV3dmNzaGl0cTRyNWp3dXFnajR2ZWs3bnUyajZyZ2NycCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/G4TM38TROaeGj5pkXh/giphy.gif",
   "https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExeHZrYm03bG10OThkZWl5d3B5ZnBlZTdqbGM2Z3psYjNqa2VyZnJtcSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/gNke2UrUTopOg/giphy.gif"
 ];
 
-let current = 0;
+let currentIndex = 0;
+cardImage.src = visuals[0];
 
-function switchImage() {
-  current = (current + 1) % images.length;
-  cardImage.src = images[current];
-}
+/* AUTO ROTATE IMAGE / GIF */
+setInterval(() => {
+  currentIndex = (currentIndex + 1) % visuals.length;
+  cardImage.src = visuals[currentIndex];
+}, 5000);
 
+/* LIVE TEXT PREVIEW */
 nameInput.addEventListener("input", () => {
   cardTitle.textContent = nameInput.value
     ? `Merry Christmas 🎄 — ${nameInput.value}`
@@ -28,18 +31,18 @@ messageInput.addEventListener("input", () => {
     "May this Christmas bring peace, love, and joy.";
 });
 
+/* WHATSAPP */
 function shareWhatsApp() {
   const text = `${cardTitle.textContent}\n\n${cardMessage.textContent}`;
   window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, "_blank");
 }
 
-function copyInstagram() {
-  navigator.clipboard.writeText(
-    `${cardTitle.textContent}\n\n${cardMessage.textContent}`
-  );
-  alert("Text copied for Instagram");
+/* INSTAGRAM REDIRECT */
+function goInstagram() {
+  window.open("https://www.instagram.com/", "_blank");
 }
 
+/* DOWNLOAD (GIF → STATIC IMAGE) */
 function downloadCard() {
   const canvas = document.getElementById("canvas");
   const ctx = canvas.getContext("2d");
@@ -73,6 +76,7 @@ function downloadCard() {
 function wrapText(ctx, text, x, y, maxWidth, lineHeight) {
   const words = text.split(" ");
   let line = "";
+
   for (let i = 0; i < words.length; i++) {
     const testLine = line + words[i] + " ";
     if (ctx.measureText(testLine).width > maxWidth && i > 0) {
