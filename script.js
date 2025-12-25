@@ -1,46 +1,43 @@
-const gifs = [
+const images = [
   "https://media1.giphy.com/media/G4TM38TROaeGj5pkXh/giphy.gif",
   "https://media2.giphy.com/media/gNke2UrUTopOg/giphy.gif"
 ];
 
-let index = 0;
-const media = document.getElementById("media");
+let current = 0;
+const cardImage = document.getElementById("cardImage");
+cardImage.src = images[current];
 
-function rotateMedia() {
-  media.src = gifs[index % gifs.length];
-  index++;
-}
-rotateMedia();
-setInterval(rotateMedia, 4000);
+setInterval(() => {
+  current = (current + 1) % images.length;
+  cardImage.src = images[current];
+}, 4000);
 
-document.getElementById("nameInput").oninput = e =>
+document.getElementById("nameInput").oninput = e => {
   document.getElementById("title").innerText =
-    `Merry Christmas 🎄 — ${e.target.value}`;
+    "Merry Christmas 🎄 — " + e.target.value;
+};
 
-document.getElementById("msgInput").oninput = e =>
-  document.getElementById("msg").innerText = e.target.value;
+document.getElementById("msgInput").oninput = e => {
+  document.getElementById("message").innerText = e.target.value;
+};
 
-function buildPreviewURL() {
-  const params = new URLSearchParams({
-    n: title.innerText,
-    m: msg.innerText
-  });
-  return location.origin + location.pathname.replace("index","preview") + "?" + params;
+function downloadCard() {
+  import("https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js")
+    .then(() => {
+      html2canvas(document.getElementById("card")).then(canvas => {
+        const a = document.createElement("a");
+        a.href = canvas.toDataURL("image/png");
+        a.download = "christmas-card.png";
+        a.click();
+      });
+    });
 }
 
 function shareWhatsApp() {
-  window.open("https://wa.me/?text=" + encodeURIComponent(buildPreviewURL()));
+  const url = location.origin + "/preview.html" + location.search;
+  window.open(`https://wa.me/?text=${encodeURIComponent(url)}`);
 }
 
-function shareInstagram() {
+function openInstagram() {
   window.open("https://www.instagram.com/");
-}
-
-function downloadCard() {
-  html2canvas(document.getElementById("card")).then(canvas => {
-    const a = document.createElement("a");
-    a.download = "christmas-card.png";
-    a.href = canvas.toDataURL("image/png");
-    a.click();
-  });
 }
