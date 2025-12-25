@@ -1,8 +1,8 @@
 {
-"name":"Merry Christmas Wishes",
-"short_name":"Christmas",
-"start_url":"./index.html",
-"display":"standalone",
-"background_color":"#000000",
-"theme_color":"#b30000"
+  "name": "Christmas Card Maker",
+  "short_name": "Christmas Card",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#000000",
+  "theme_color": "#b30000"
 }
