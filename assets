@@ -1,9 +1,2 @@
-/
-├── index.html
-├── preview.html
-├── style.css
-├── script.js
-├── preview.js
-├── assets/
-│   ├── Santa_claus.png
-│   └── bg-snow.png
+assets/
+└── Santa_claus.png   (transparent PNG)
