@@ -1,23 +1,15 @@
-/* Card image (same Santa image for consistency) */
-const images = [
-  "how-old-is-santa-claus.jpg"
-];
-
-const cardImage = document.getElementById("cardImage");
-cardImage.src = images[0];
-
-const cardName = document.getElementById("cardName");
-const cardMessage = document.getElementById("cardMessage");
 const nameInput = document.getElementById("nameInput");
 const msgInput = document.getElementById("msgInput");
+const cardName = document.getElementById("cardName");
+const cardMessage = document.getElementById("cardMessage");
 
 /* Live preview */
 nameInput.addEventListener("input", () => {
-  cardName.innerText = nameInput.value || "Merry Christmas 🎄";
+  cardName.textContent = nameInput.value || "Merry Christmas 🎄";
 });
 
 msgInput.addEventListener("input", () => {
-  cardMessage.innerText =
+  cardMessage.textContent =
     msgInput.value || "May this Christmas bring peace, love, and joy.";
 });
 
@@ -39,14 +31,10 @@ function downloadCard() {
   const ctx = canvas.getContext("2d");
 
   const img = new Image();
-  img.crossOrigin = "anonymous";
-  img.src = cardImage.src;
+  img.src = "./how-old-is-santa-claus.jpg";
 
   img.onload = () => {
-    const gradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
-    gradient.addColorStop(0, "#fffaf2");
-    gradient.addColorStop(1, "#ffffff");
-    ctx.fillStyle = gradient;
+    ctx.fillStyle = "#ffffff";
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
     ctx.drawImage(img, 0, 0, canvas.width, 720);
@@ -54,29 +42,14 @@ function downloadCard() {
     ctx.fillStyle = "#2b2b2b";
     ctx.textAlign = "center";
     ctx.font = "bold 64px Georgia";
-    ctx.fillText(cardName.innerText, canvas.width / 2, 860);
+    ctx.fillText(cardName.textContent, canvas.width / 2, 860);
 
     ctx.font = "44px Georgia";
-    ctx.fillStyle = "#444";
-    wrap(ctx, cardMessage.innerText, canvas.width / 2, 940, 860, 58);
+    ctx.fillText(cardMessage.textContent, canvas.width / 2, 940);
 
     const a = document.createElement("a");
     a.download = "christmas-card.png";
     a.href = canvas.toDataURL();
     a.click();
   };
-}
-
-function wrap(ctx, text, x, y, max, lh) {
-  const words = text.split(" ");
-  let line = "";
-  for (let w of words) {
-    const test = line + w + " ";
-    if (ctx.measureText(test).width > max) {
-      ctx.fillText(line, x, y);
-      line = w + " ";
-      y += lh;
-    } else line = test;
-  }
-  ctx.fillText(line, x, y);
 }
