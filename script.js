@@ -37,7 +37,7 @@ function copyInstagram() {
   navigator.clipboard.writeText(
     `${cardTitle.textContent}\n\n${cardMessage.textContent}`
   );
-  alert("Text copied for Instagram.");
+  alert("Text copied for Instagram");
 }
 
 function downloadCard() {
@@ -73,12 +73,11 @@ function downloadCard() {
 function wrapText(ctx, text, x, y, maxWidth, lineHeight) {
   const words = text.split(" ");
   let line = "";
-  for (let n = 0; n < words.length; n++) {
-    const testLine = line + words[n] + " ";
-    const metrics = ctx.measureText(testLine);
-    if (metrics.width > maxWidth && n > 0) {
+  for (let i = 0; i < words.length; i++) {
+    const testLine = line + words[i] + " ";
+    if (ctx.measureText(testLine).width > maxWidth && i > 0) {
       ctx.fillText(line, x, y);
-      line = words[n] + " ";
+      line = words[i] + " ";
       y += lineHeight;
     } else {
       line = testLine;
