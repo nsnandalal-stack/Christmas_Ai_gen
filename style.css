@@ -1,6 +1,4 @@
-* {
-  box-sizing: border-box;
-}
+* { box-sizing: border-box; }
 
 body {
   margin: 0;
@@ -23,14 +21,33 @@ body {
   z-index: 0;
 }
 
-.snow2 {
-  animation-duration: 35s;
-  opacity: 0.35;
-}
+.snow2 { animation-duration: 35s; opacity: 0.35; }
 
 @keyframes snow {
   from { transform: translateY(-50%); }
   to   { transform: translateY(50%); }
+}
+
+/* Corner Santa */
+.corner-santa {
+  position: fixed;
+  bottom: 12px;
+  left: 12px;
+  width: 120px;
+  z-index: 1;
+  pointer-events: none;
+  animation: santaFloat 6s ease-in-out infinite;
+}
+
+.corner-santa img {
+  width: 100%;
+  height: auto;
+}
+
+@keyframes santaFloat {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+  100% { transform: translateY(0); }
 }
 
 /* App */
@@ -94,8 +111,7 @@ body {
 }
 
 /* Inputs */
-input,
-textarea {
+input, textarea {
   width: 100%;
   max-width: 360px;
   margin-top: 12px;
@@ -105,9 +121,7 @@ textarea {
   font-size: 15px;
 }
 
-textarea {
-  resize: none;
-}
+textarea { resize: none; }
 
 /* Actions */
 .actions {
@@ -133,19 +147,10 @@ button {
   font-size: 18px;
 }
 
-.wa {
-  background: #25d366;
-  color: #fff;
-}
-
-.ig {
-  background: #e1306c;
-  color: #fff;
-}
+.wa { background: #25d366; color: #fff; }
+.ig { background: #e1306c; color: #fff; }
 
 /* Desktop spacing */
 @media (min-width: 768px) {
-  .app {
-    padding-top: 48px;
-  }
+  .app { padding-top: 48px; }
 }
