@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Merry Christmas</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="style.css">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#b30000">
+</head>
+<body>
+
+<div class="snow"></div><div class="snow snow2"></div><div class="snow snow3"></div>
+
+<div class="overlay candle-glow">
+  <h1>🎄 Merry Christmas 🎄</h1>
+
+  <div class="jesus-frame">
+    <img id="jesusGif" src="gifs/jesus1.gif" alt="Nativity">
+  </div>
+
+  <p id="defaultWish">
+    May the birth of Jesus fill your heart with peace, love, and hope.
+  </p>
+
+  <textarea id="userWish" placeholder="Write your Christmas wish here..."></textarea>
+
+  <div class="buttons">
+    <button onclick="shareWhatsApp()">Share on WhatsApp</button>
+    <button onclick="copyLink()">Copy Share Link</button>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

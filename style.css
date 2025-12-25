@@ -1,0 +1,87 @@
+body {
+margin:0;
+height:100vh;
+background-size:cover;
+background-position:center;
+font-family:Georgia,serif;
+transition:background-image 1.2s ease-in-out;
+}
+
+.overlay{
+background:rgba(0,0,0,.55);
+color:#fff;
+height:100%;
+padding:20px;
+text-align:center;
+display:flex;
+flex-direction:column;
+justify-content:center;
+}
+
+textarea{
+margin-top:15px;
+padding:12px;
+font-size:16px;
+border-radius:8px;
+border:none;
+resize:none;
+}
+
+button{
+margin:6px;
+padding:10px 16px;
+font-size:16px;
+border-radius:6px;
+border:none;
+cursor:pointer;
+}
+
+.jesus-frame{
+width:220px;
+height:220px;
+margin:0 auto 15px;
+border-radius:14px;
+overflow:hidden;
+border:2px solid rgba(255,255,255,.4);
+}
+
+.jesus-frame img{
+width:100%;
+height:100%;
+object-fit:cover;
+}
+
+.candle-glow{
+box-shadow:0 0 40px rgba(255,200,120,.35), inset 0 0 80px rgba(255,170,80,.25);
+animation:flicker 3s infinite ease-in-out;
+}
+
+@keyframes flicker{
+0%{box-shadow:0 0 35px rgba(255,200,120,.3);}
+50%{box-shadow:0 0 55px rgba(255,180,90,.45);}
+100%{box-shadow:0 0 35px rgba(255,200,120,.3);}
+}
+
+.snow{
+position:fixed;
+top:-100vh;
+left:0;
+width:100%;
+height:300vh;
+background-image:
+radial-gradient(2px 2px at 20px 30px, white 50%, transparent 50%),
+radial-gradient(2px 2px at 40px 70px, white 50%, transparent 50%),
+radial-gradient(1.5px 1.5px at 90px 40px, white 50%, transparent 50%);
+background-size:120px 120px;
+animation:snowfall 18s linear infinite;
+pointer-events:none;
+opacity:.6;
+}
+
+.snow2{animation-duration:25s;opacity:.4;}
+.snow3{animation-duration:35s;opacity:.25;}
+
+@keyframes snowfall{
+from{transform:translateY(0);}
+to{transform:translateY(100vh);}
+}
