@@ -2,17 +2,16 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Christmas Card Maker</title>
+  <title>Christmas Wishes</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!-- Font -->
+  <!-- Malayalam + English -->
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Malayalam&display=swap" rel="stylesheet">
 
   <!-- Icons -->
   <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
 
-  <!-- CSS -->
   <link rel="stylesheet" href="style.css" />
 </head>
 
@@ -22,46 +21,42 @@
   <div class="snow"></div>
   <div class="snow snow2"></div>
 
-  <main class="app">
+  <main class="container">
 
-    <div class="layout">
-
-      <!-- Card -->
-      <section class="card" id="card">
-        <img src="how-old-is-santa-claus.jpg" alt="Santa Christmas Image" />
-        <h2 id="cardName">Merry Christmas 🎄</h2>
-        <p id="cardMessage">
-          May this Christmas bring peace, love, and joy.
-        </p>
-      </section>
-
-      <!-- Santa beside card -->
-      <div class="side-santa">
-        <img src="how-old-is-santa-claus.jpg" alt="Santa Claus" />
-      </div>
-
+    <!-- CARD PREVIEW -->
+    <div class="card" id="card">
+      <h1 id="previewTitle">Merry Christmas 🎄</h1>
+      <p id="previewMessage">
+        May this Christmas bring peace, love, and joy.
+      </p>
     </div>
 
-    <!-- Inputs -->
-    <input id="nameInput" placeholder="Your name / നിങ്ങളുടെ പേര്" />
-    <textarea id="msgInput" placeholder="Your Christmas message / നിങ്ങളുടെ സന്ദേശം"></textarea>
+    <!-- INPUTS -->
+    <input
+      id="nameInput"
+      placeholder="Your name / നിങ്ങളുടെ പേര്" />
 
-    <!-- Actions -->
+    <textarea
+      id="msgInput"
+      placeholder="Your Christmas message / നിങ്ങളുടെ സന്ദേശം"></textarea>
+
+    <!-- BUTTON ROW -->
     <div class="actions">
       <button onclick="downloadCard()">Download</button>
-      <button class="icon-btn wa" onclick="shareWhatsApp()">
+
+      <button class="icon wa" onclick="shareWhatsApp()">
         <i class="fab fa-whatsapp"></i>
       </button>
-      <button class="icon-btn ig" onclick="shareInstagram()">
+
+      <button class="icon ig" onclick="shareInstagram()">
         <i class="fab fa-instagram"></i>
       </button>
     </div>
 
   </main>
 
-  <canvas id="canvas" width="1080" height="1350" hidden></canvas>
+  <canvas id="canvas" width="1080" height="1080" hidden></canvas>
 
-  <!-- JS -->
   <script src="script.js"></script>
 </body>
 </html>
