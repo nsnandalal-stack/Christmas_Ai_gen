@@ -4,27 +4,45 @@
   <meta charset="UTF-8">
   <title>Christmas Card Maker</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Malayalam&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
+
+  <!-- Snow -->
   <div class="snow"></div>
   <div class="snow snow2"></div>
+
   <main class="container">
+
+    <!-- Card Preview -->
     <div class="card" id="card">
-      <img src="images/santa.svg" class="card-image" alt="Santa">
+      <img
+        id="cardImage"
+        src="https://pixabay.com/gifs/christmas-advent-15518/"
+        alt="Christmas Image"
+      >
+
       <h1 id="cardTitle">Merry Christmas 🎄</h1>
-      <p id="cardMessage">May this Christmas bring peace, love, and joy.</p>
+      <p id="cardMessage">
+        May this Christmas bring peace, love, and joy.
+      </p>
     </div>
+
+    <!-- Inputs -->
     <input id="nameInput" placeholder="Your name / നിങ്ങളുടെ പേര്">
     <textarea id="messageInput" placeholder="Your Christmas message / നിങ്ങളുടെ സന്ദേശം"></textarea>
+
+    <!-- Buttons in one row -->
     <div class="actions">
-      <button onclick="downloadCard()">Download</button>
       <button onclick="shareWhatsApp()">WhatsApp</button>
-      <button onclick="copyForInstagram()">Instagram</button>
+      <button onclick="copyInstagram()">Instagram</button>
     </div>
+
   </main>
-  <canvas id="canvas" width="1080" height="1350" hidden></canvas>
+
   <script src="script.js"></script>
 </body>
 </html>
