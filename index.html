@@ -5,21 +5,26 @@
   <title>Christmas Card Maker</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!-- Malayalam + Serif -->
+  <!-- Malayalam-friendly serif -->
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Malayalam&display=swap" rel="stylesheet">
 
   <!-- Icons -->
   <link rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
 
   <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
 
-  <!-- Snow -->
+  <!-- Snow background -->
   <div class="snow"></div>
   <div class="snow snow2"></div>
+
+  <!-- Corner Santa -->
+  <div class="corner-santa">
+    <img src="assets/how-old-is-santa-claus.avif" alt="Santa Claus">
+  </div>
 
   <main class="app">
 
@@ -36,7 +41,7 @@
     <input id="nameInput" placeholder="Your name / നിങ്ങളുടെ പേര്" />
     <textarea id="msgInput" placeholder="Your Christmas message / നിങ്ങളുടെ സന്ദേശം"></textarea>
 
-    <!-- Actions (single row) -->
+    <!-- Actions -->
     <div class="actions">
       <button onclick="downloadCard()">Download</button>
 
