@@ -1,38 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8">
   <title>Christmas Card Maker</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="style.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Malayalam font -->
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Malayalam&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-  <!-- Snow background -->
+  <!-- Snow -->
   <div class="snow"></div>
   <div class="snow snow2"></div>
 
+  <!-- Animated characters -->
+  <div class="characters">
+    <div class="char santa">🎅</div>
+    <div class="char angel">👼</div>
+    <div class="char star">⭐</div>
+  </div>
+
   <div class="app">
 
-    <div class="card" id="card">
-      <img id="cardImage" alt="Christmas Image" />
-
+    <!-- Card -->
+    <div class="card classic" id="card">
+      <img id="cardImage" alt="Christmas Image">
       <h2 id="cardName">Merry Christmas 🎄</h2>
       <p id="cardMessage">
-        May this Christmas bring peace, love, and joy to your heart.
+        May this Christmas bring peace, love, and joy.
       </p>
     </div>
 
-    <input id="nameInput" placeholder="Your name" />
-    <textarea id="msgInput" placeholder="Your Christmas message"></textarea>
+    <!-- Controls -->
+    <select id="template" onchange="setTemplate(this.value)">
+      <option value="classic">Classic</option>
+      <option value="night">Night</option>
+      <option value="festive">Festive</option>
+    </select>
+
+    <input id="nameInput" placeholder="Your name / നിങ്ങളുടെ പേര്">
+    <textarea id="msgInput" placeholder="Your Christmas message / നിങ്ങളുടെ സന്ദേശം"></textarea>
 
     <button onclick="createCard()">Create Card</button>
     <button onclick="downloadCard()">Download Card</button>
+    <button onclick="shareCard()">Share Card Link</button>
 
   </div>
 
   <canvas id="canvas" width="1080" height="1350" style="display:none"></canvas>
+
   <script src="script.js"></script>
 </body>
 </html>
