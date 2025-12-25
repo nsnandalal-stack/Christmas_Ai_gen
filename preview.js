@@ -10,6 +10,12 @@ document.getElementById("previewCard").innerHTML = `
   </div>
 `;
 
+window.addEventListener("load", () => {
+  setTimeout(() => {
+    document.getElementById("envelope").classList.add("open");
+  }, 300);
+});
+
 function copyLink() {
   navigator.clipboard.writeText(location.href);
   alert("Link copied");
