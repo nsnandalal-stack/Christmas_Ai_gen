@@ -1,6 +1,4 @@
-* {
-  box-sizing: border-box;
-}
+* { box-sizing: border-box; }
 
 body {
   margin: 0;
@@ -23,14 +21,11 @@ body {
   z-index: 0;
 }
 
-.snow2 {
-  animation-duration: 35s;
-  opacity: 0.35;
-}
+.snow2 { animation-duration: 35s; opacity: 0.35; }
 
 @keyframes snow {
   from { transform: translateY(-50%); }
-  to   { transform: translateY(50%); }
+  to { transform: translateY(50%); }
 }
 
 /* App */
