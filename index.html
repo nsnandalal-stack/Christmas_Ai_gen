@@ -8,21 +8,25 @@
   <!-- Malayalam font -->
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Malayalam&display=swap" rel="stylesheet">
 
+  <!-- Icons -->
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-  <!-- Snow background -->
+  <!-- Snow -->
   <div class="snow"></div>
   <div class="snow snow2"></div>
 
-  <!-- Santa Frame Background -->
-  <div class="santa-frame-bg"></div>
+  <!-- Frame background -->
+  <div class="bg-frame"></div>
 
   <div class="app">
 
-    <!-- Card -->
+    <!-- Card Preview -->
     <div class="card" id="card">
       <img id="cardImage" alt="Christmas Image">
       <h2 id="cardName">Merry Christmas 🎄</h2>
@@ -35,9 +39,20 @@
     <input id="nameInput" placeholder="Your name / നിങ്ങളുടെ പേര്">
     <textarea id="msgInput" placeholder="Your Christmas message / നിങ്ങളുടെ സന്ദേശം"></textarea>
 
-    <button onclick="createCard()">Create Card</button>
-    <button onclick="downloadCard()">Download Card</button>
-    <button onclick="shareCard()">Share Card Link</button>
+    <!-- Action buttons (single row) -->
+    <div class="actions">
+      <button onclick="createCard()">Create</button>
+      <button onclick="downloadCard()">Download</button>
+      <button onclick="shareLink()">Share Link</button>
+
+      <button class="icon-btn wa" onclick="shareWhatsApp()">
+        <i class="fab fa-whatsapp"></i>
+      </button>
+
+      <button class="icon-btn ig" onclick="shareInstagram()">
+        <i class="fab fa-instagram"></i>
+      </button>
+    </div>
 
   </div>
 
