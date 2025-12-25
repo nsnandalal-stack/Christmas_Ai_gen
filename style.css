@@ -1,77 +1,87 @@
 body {
   margin: 0;
-  background: radial-gradient(#0b2a4a, #041527);
-  font-family: 'Georgia', serif;
-  color: #222;
+  font-family: serif;
+  background: linear-gradient(#0b2a4a, #061a2f);
   overflow-x: hidden;
 }
 
-.snow::before {
-  content: "";
+.snow-bg {
   position: fixed;
   inset: 0;
-  background: url("https://i.imgur.com/M6y8nZP.png");
-  animation: snow 20s linear infinite;
+  background: url("assets/bg-snow.png") repeat;
   opacity: 0.4;
+  pointer-events: none;
 }
 
-@keyframes snow {
-  to { background-position: 0 1000px; }
-}
-
-.container {
+.card-wrapper {
   display: flex;
-  flex-direction: column;
+  justify-content: center;
   align-items: center;
-  padding: 30px;
+  margin-top: 60px;
 }
 
 .card {
-  width: 360px;
+  width: 340px;
   background: #fffaf0;
-  border-radius: 16px;
+  border-radius: 18px;
   overflow: hidden;
-  box-shadow: 0 20px 40px rgba(0,0,0,.4);
+  box-shadow: 0 20px 50px rgba(0,0,0,.3);
 }
 
-.card-media {
+.card-image {
   width: 100%;
   height: auto;
   object-fit: contain;
 }
 
-h1 { text-align: center; margin: 12px; }
-p { text-align: center; padding: 0 16px 16px; }
+.card-text {
+  padding: 16px;
+  text-align: center;
+}
 
-input, textarea {
-  width: 360px;
-  margin-top: 10px;
+.santa-side {
+  width: 200px;
+  margin-left: 30px;
+}
+
+.inputs {
+  margin-top: 30px;
+  text-align: center;
+}
+
+.inputs input, textarea {
+  width: 320px;
   padding: 10px;
+  margin: 6px 0;
   border-radius: 8px;
-  border: none;
 }
 
-.actions {
-  display: flex;
-  gap: 10px;
-  margin-top: 15px;
-}
-
-button {
-  padding: 10px 14px;
+.actions button {
+  margin: 6px;
+  padding: 10px 16px;
   border-radius: 8px;
-  border: none;
   cursor: pointer;
 }
 
-.santa-float {
-  position: absolute;
-  right: 40px;
-  bottom: 120px;
-  width: 140px;
-  animation: float 3s ease-in-out infinite;
+/* Envelope animation */
+.envelope {
+  width: 360px;
+  margin: 80px auto;
+  perspective: 800px;
 }
 
-@keyframes float {
-  50% { transform: translateY(-10px); }
+.flap {
+  height: 80px;
+  background: #c0392b;
+  transform-origin: top;
+  transition: transform 1s ease;
+}
+
+.envelope.open .flap {
+  transform: rotateX(180deg);
+}
+
+.letter {
+  background: white;
+  padding: 16px;
 }
