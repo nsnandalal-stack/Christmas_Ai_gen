@@ -4,52 +4,35 @@
   <meta charset="UTF-8" />
   <title>Christmas Card Maker</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
   <link rel="stylesheet" href="style.css" />
-  <link rel="manifest" href="manifest.json" />
-  <meta name="theme-color" content="#b30000" />
 </head>
 
 <body>
 
-  <!-- Snow -->
+  <!-- Snow background -->
   <div class="snow"></div>
   <div class="snow snow2"></div>
-  <div class="snow snow3"></div>
 
-  <div class="overlay candle-glow">
+  <div class="app">
 
-    <div class="lang-toggle">
-      <button onclick="setLang('en')">EN</button>
-      <button onclick="setLang('ml')">ML</button>
+    <div class="card" id="card">
+      <img id="cardImage" alt="Christmas Image" />
+
+      <h2 id="cardName">Merry Christmas 🎄</h2>
+      <p id="cardMessage">
+        May this Christmas bring peace, love, and joy to your heart.
+      </p>
     </div>
 
-    <h1 id="title">🎄 Merry Christmas 🎄</h1>
+    <input id="nameInput" placeholder="Your name" />
+    <textarea id="msgInput" placeholder="Your Christmas message"></textarea>
 
-    <!-- Jesus / Christmas GIF frame -->
-    <div class="jesus-frame">
-      <img id="jesusGif" alt="Christmas GIF">
-    </div>
-
-    <p id="defaultWish">
-      May the birth of Jesus fill your heart with peace, love, and hope.
-    </p>
-
-    <input id="senderName" placeholder="Your name" />
-    <textarea id="userWish" placeholder="Your Christmas message..."></textarea>
-
-    <div class="buttons">
-      <button onclick="share()">Create & Share Card</button>
-      <button onclick="downloadCard()">Download Card as Image</button>
-      <button id="editBtn" onclick="resetCard()" style="display:none;">
-        Edit & Send Your Own Card
-      </button>
-    </div>
+    <button onclick="createCard()">Create Card</button>
+    <button onclick="downloadCard()">Download Card</button>
 
   </div>
 
-  <canvas id="cardCanvas" width="1080" height="1350" style="display:none;"></canvas>
-
+  <canvas id="canvas" width="1080" height="1350" style="display:none"></canvas>
   <script src="script.js"></script>
 </body>
 </html>
