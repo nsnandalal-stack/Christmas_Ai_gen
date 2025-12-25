@@ -1,38 +1,162 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Christmas Card Maker</title>
-  <link rel="stylesheet" href="style.css" />
+<meta charset="UTF-8">
+<title>Christmas Card Maker</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: "Georgia", serif;
+  background: linear-gradient(#0b2a4a, #061a2f);
+  min-height: 100vh;
+  color: #000;
+}
+
+/* Snow */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image: radial-gradient(#fff 1px, transparent 1px);
+  background-size: 60px 60px;
+  opacity: 0.25;
+  pointer-events: none;
+}
+
+/* Layout */
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 60px;
+  gap: 40px;
+}
+
+.card {
+  width: 340px;
+  background: #fffaf0;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0,0,0,.35);
+}
+
+.card img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.card-content {
+  padding: 16px;
+  text-align: center;
+}
+
+/* Natural Santa */
+.santa {
+  position: fixed;
+  right: 40px;
+  bottom: 100px;
+  width: 160px;
+  height: auto;
+  pointer-events: none;
+}
+
+/* Inputs */
+.controls {
+  margin: 30px auto;
+  text-align: center;
+}
+
+.controls input,
+.controls textarea {
+  width: 320px;
+  padding: 10px;
+  border-radius: 8px;
+  border: none;
+  margin: 6px 0;
+}
+
+.actions button {
+  padding: 10px 16px;
+  margin: 6px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+}
+</style>
 </head>
+
 <body>
 
-<div class="snow-bg"></div>
-
-<img src="assets/Santa_claus.png" class="santa-natural" alt="Santa" />
-
-<div class="card-wrapper">
+<div class="wrapper">
   <div id="card" class="card">
-    <img id="cardImage" class="card-image" />
-    <div class="card-text">
-      <h1 id="title">Merry Christmas 🎄</h1>
+    <img id="cardImage">
+    <div class="card-content">
+      <h2 id="title">Merry Christmas 🎄</h2>
       <p id="message">May this Christmas bring peace, love, and joy.</p>
     </div>
   </div>
 </div>
 
-<div class="inputs">
-  <input id="nameInput" placeholder="Your name / നിങ്ങളുടെ പേര്" />
-  <textarea id="msgInput" placeholder="Your message / നിങ്ങളുടെ സന്ദേശം"></textarea>
+<img src="assets/Santa_claus.png" class="santa" alt="Santa">
+
+<div class="controls">
+  <input id="name" placeholder="Your name / നിങ്ങളുടെ പേര്">
+  <textarea id="msg" placeholder="Message / സന്ദേശം"></textarea>
 
   <div class="actions">
     <button onclick="downloadCard()">Download</button>
     <button onclick="shareWhatsApp()">WhatsApp</button>
-    <button onclick="copyPreviewLink()">Copy Link</button>
     <button onclick="openInstagram()">Instagram</button>
   </div>
 </div>
 
-<script src="script.js"></script>
+<script>
+/* Image rotation */
+const images = [
+  "https://media1.giphy.com/media/G4TM38TROaeGj5pkXh/giphy.gif",
+  "https://media2.giphy.com/media/gNke2UrUTopOg/giphy.gif"
+];
+let i = 0;
+const img = document.getElementById("cardImage");
+img.src = images[0];
+
+setInterval(() => {
+  i = (i + 1) % images.length;
+  img.src = images[i];
+}, 4000);
+
+/* Live preview */
+name.oninput = () => {
+  title.textContent = "Merry Christmas 🎄 — " + name.value;
+};
+msg.oninput = () => {
+  message.textContent = msg.value;
+};
+
+/* Download */
+function downloadCard() {
+  import("https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js")
+  .then(() => {
+    html2canvas(document.getElementById("card")).then(canvas => {
+      const a = document.createElement("a");
+      a.href = canvas.toDataURL("image/png");
+      a.download = "christmas-card.png";
+      a.click();
+    });
+  });
+}
+
+/* Share */
+function shareWhatsApp() {
+  const link = location.href;
+  window.open("https://wa.me/?text=" + encodeURIComponent(link));
+}
+function openInstagram() {
+  window.open("https://www.instagram.com/");
+}
+</script>
+
 </body>
 </html>
