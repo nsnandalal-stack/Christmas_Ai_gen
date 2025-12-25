@@ -2,22 +2,32 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Christmas Card Preview</title>
+  <title>You have a Christmas Card!</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<div class="envelope" id="envelope">
-  <div class="flap"></div>
-  <div class="letter">
-    <div id="previewCard" class="card"></div>
+<div class="snow-bg"></div>
 
-    <div class="actions">
-      <button onclick="shareWhatsApp()">WhatsApp</button>
-      <button onclick="copyLink()">Copy Link</button>
-      <button onclick="openInstagram()">Instagram</button>
+<div class="envelope-container">
+    <div class="envelope" id="envelope">
+        <div class="flap"></div>
+        <div class="letter">
+            <div id="previewCardContent">
+                <img src="assets/santa.jpg" alt="Santa">
+                <h1 id="pTitle">Merry Christmas 🎄</h1>
+                <p id="pMsg">Loading...</p>
+                <p id="pFooter" style="font-size: 10px; color: #777; margin-top:5px;"></p>
+            </div>
+        </div>
     </div>
-  </div>
+    
+    <div class="preview-actions">
+        <button onclick="window.location.href='index.html'" class="btn-primary">Make Your Own Card</button>
+        <br><br>
+        <button onclick="shareWhatsApp()" class="btn-whatsapp">Share on WhatsApp</button>
+    </div>
 </div>
 
 <script src="preview.js"></script>
