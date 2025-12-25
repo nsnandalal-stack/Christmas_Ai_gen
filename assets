@@ -3,6 +3,7 @@ Christmas_Ai_gen/
 ├── style.css
 ├── script.js
 ├── manifest.json
+├── service-worker.js
 ├── how-old-is-santa-claus.jpg
 └── icons/
     ├── icon-192.png
