@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Christmas Card Maker</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Malayalam&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
@@ -17,13 +17,14 @@
 
   <main class="container">
 
-    <!-- Card Preview -->
+    <!-- Card -->
     <div class="card" id="card">
       <img
         id="cardImage"
-        src="https://pixabay.com/gifs/christmas-advent-15518/"
-        alt="Christmas Image"
-      >
+        crossorigin="anonymous"
+        src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExbng3bmxzNTV3dmNzaGl0cTRyNWp3dXFnajR2ZWs3bnUyajZyZ2NycCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/G4TM38TROaeGj5pkXh/giphy.gif"
+        alt="Christmas GIF"
+      />
 
       <h1 id="cardTitle">Merry Christmas 🎄</h1>
       <p id="cardMessage">
@@ -32,16 +33,20 @@
     </div>
 
     <!-- Inputs -->
-    <input id="nameInput" placeholder="Your name / നിങ്ങളുടെ പേര്">
+    <input id="nameInput" placeholder="Your name / നിങ്ങളുടെ പേര്" />
     <textarea id="messageInput" placeholder="Your Christmas message / നിങ്ങളുടെ സന്ദേശം"></textarea>
 
-    <!-- Buttons in one row -->
+    <!-- Buttons -->
     <div class="actions">
+      <button onclick="switchImage()">Change Image</button>
+      <button onclick="downloadCard()">Download</button>
       <button onclick="shareWhatsApp()">WhatsApp</button>
       <button onclick="copyInstagram()">Instagram</button>
     </div>
 
   </main>
+
+  <canvas id="canvas" width="1080" height="1350" hidden></canvas>
 
   <script src="script.js"></script>
 </body>
