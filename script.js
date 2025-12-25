@@ -95,3 +95,4 @@ if (params.get("name")) {
   imgIndex = parseInt(params.get("img")) || 0;
   cardImage.src = images[imgIndex % images.length];
 }
+
