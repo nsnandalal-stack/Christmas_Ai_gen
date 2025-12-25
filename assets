@@ -1,4 +1,8 @@
-Christmas_Ai_gen/
+/ (Your Main Folder)
 ├── index.html
+├── style.css
+├── script.js
+├── preview.html
+├── preview.js
 └── assets/
-    └── Santa_claus.png
+    └── santa.jpg   <-- Rename your "Santa_claus.jpg" to "santa.jpg"
