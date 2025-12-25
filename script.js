@@ -1,101 +1,97 @@
-body {
-  margin: 0;
-  height: 100vh;
-  font-family: 'Noto Serif Malayalam', Georgia, serif;
-  background: linear-gradient(#0b1d33, #16324f);
-  overflow: hidden;
+const images = [
+  "https://images.pexels.com/photos/1652555/pexels-photo-1652555.jpeg",
+  "https://images.pexels.com/photos/728461/pexels-photo-728461.jpeg",
+  "https://images.pexels.com/photos/290220/pexels-photo-290220.jpeg"
+];
+
+let imgIndex = 0;
+const cardImage = document.getElementById("cardImage");
+cardImage.src = images[0];
+
+setInterval(() => {
+  imgIndex = (imgIndex + 1) % images.length;
+  cardImage.src = images[imgIndex];
+}, 5000);
+
+const card = document.getElementById("card");
+const cardName = document.getElementById("cardName");
+const cardMessage = document.getElementById("cardMessage");
+const nameInput = document.getElementById("nameInput");
+const msgInput = document.getElementById("msgInput");
+
+function setTemplate(tpl) {
+  card.className = `card ${tpl}`;
 }
 
-/* Snow */
-.snow {
-  position: fixed;
-  width: 100%;
-  height: 200%;
-  background-image:
-    radial-gradient(2px 2px at 20px 30px, white 50%, transparent 50%);
-  background-size: 120px 120px;
-  animation: snow 20s linear infinite;
-  opacity: 0.6;
+function createCard() {
+  const name = nameInput.value || "Merry Christmas 🎄";
+  const msg = msgInput.value || "May this Christmas bring peace and joy.";
+  const tpl = document.getElementById("template").value;
+
+  cardName.innerText = name;
+  cardMessage.innerText = msg;
+  setTemplate(tpl);
+
+  const url =
+    `${location.origin}${location.pathname}?` +
+    `name=${encodeURIComponent(name)}&msg=${encodeURIComponent(msg)}&tpl=${tpl}&img=${imgIndex}`;
+
+  history.replaceState(null, "", url);
 }
 
-.snow2 { animation-duration: 35s; opacity: 0.3; }
-
-@keyframes snow {
-  from { transform: translateY(-50%); }
-  to { transform: translateY(50%); }
+function shareCard() {
+  navigator.clipboard.writeText(location.href);
+  alert("Card link copied. Share anywhere.");
 }
 
-/* Characters */
-.characters {
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
+function downloadCard() {
+  const canvas = document.getElementById("canvas");
+  const ctx = canvas.getContext("2d");
+
+  const img = new Image();
+  img.crossOrigin = "anonymous";
+  img.src = cardImage.src;
+
+  img.onload = () => {
+    ctx.fillStyle = "#fff";
+    ctx.fillRect(0,0,canvas.width,canvas.height);
+    ctx.drawImage(img, 0, 0, canvas.width, 600);
+
+    ctx.fillStyle = "#000";
+    ctx.textAlign = "center";
+    ctx.font = "bold 60px Georgia";
+    ctx.fillText(cardName.innerText, canvas.width/2, 700);
+
+    ctx.font = "42px Georgia";
+    wrap(ctx, cardMessage.innerText, canvas.width/2, 780, 900, 56);
+
+    const a = document.createElement("a");
+    a.download = "christmas-card.png";
+    a.href = canvas.toDataURL();
+    a.click();
+  };
 }
 
-.char {
-  position: absolute;
-  font-size: 48px;
-  animation: float 12s ease-in-out infinite;
-  opacity: 0.8;
+function wrap(ctx, text, x, y, max, lh) {
+  const words = text.split(" ");
+  let line = "";
+  for (let w of words) {
+    const test = line + w + " ";
+    if (ctx.measureText(test).width > max) {
+      ctx.fillText(line, x, y);
+      line = w + " ";
+      y += lh;
+    } else line = test;
+  }
+  ctx.fillText(line, x, y);
 }
 
-.santa { left: 8%; top: 30%; }
-.angel { right: 10%; top: 40%; animation-delay: 3s; }
-.star  { left: 50%; top: 15%; animation-delay: 6s; }
-
-@keyframes float {
-  0% { transform: translateY(0); }
-  50% { transform: translateY(-30px); }
-  100% { transform: translateY(0); }
-}
-
-/* App */
-.app {
-  position: relative;
-  z-index: 2;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-/* Card */
-.card {
-  width: 320px;
-  border-radius: 14px;
-  overflow: hidden;
-  box-shadow: 0 20px 40px rgba(0,0,0,.4);
-  text-align: center;
-}
-
-.card img {
-  width: 100%;
-  height: 220px;
-  object-fit: cover;
-}
-
-.card h2, .card p {
-  margin: 12px;
-}
-
-/* Templates */
-.card.classic { background: #fff; color: #000; }
-.card.night   { background: #1a1a2e; color: #fff; }
-.card.festive { background: #fff7e6; color: #7a3e00; }
-
-input, textarea, select {
-  width: 300px;
-  margin-top: 10px;
-  padding: 10px;
-  border-radius: 8px;
-  border: none;
-}
-
-button {
-  margin-top: 10px;
-  padding: 10px 18px;
-  border-radius: 6px;
-  border: none;
-  cursor: pointer;
+/* Load shared card */
+const params = new URLSearchParams(location.search);
+if (params.get("name")) {
+  cardName.innerText = params.get("name");
+  cardMessage.innerText = params.get("msg");
+  setTemplate(params.get("tpl") || "classic");
+  imgIndex = parseInt(params.get("img")) || 0;
+  cardImage.src = images[imgIndex % images.length];
 }
