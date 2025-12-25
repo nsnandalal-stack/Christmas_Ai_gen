@@ -7,7 +7,7 @@ body {
   overflow-y: auto;
 }
 
-.snow {
+.snow, .snow2 {
   position: fixed;
   inset: -50% 0 0 0;
   background-image:
@@ -15,11 +15,10 @@ body {
     radial-gradient(1.5px 1.5px at 80px 120px,#fff 50%,transparent 50%);
   background-size: 140px 140px;
   animation: snow 20s linear infinite;
-  opacity: .6;
   pointer-events: none;
 }
 
-.snow2 { animation-duration: 35s; opacity:.35; }
+.snow2 { animation-duration: 35s; opacity: .35; }
 
 @keyframes snow {
   from { transform: translateY(-50%); }
@@ -35,7 +34,7 @@ body {
 }
 
 .card {
-  background: linear-gradient(#fff,#fffaf0);
+  background: linear-gradient(#fff, #fffaf0);
   color: #2b2b2b;
   max-width: 380px;
   width: 100%;
@@ -52,7 +51,7 @@ body {
 }
 
 .card h1 { margin: 16px 0 8px; }
-.card p { margin: 0 16px 24px; line-height:1.6; }
+.card p { margin: 0 16px 24px; line-height: 1.6; }
 
 input, textarea {
   width: 100%;
@@ -69,3 +68,27 @@ input, textarea {
   margin-top: 16px;
 }
 
+/* Santa ellipse — unchanged placement */
+.santa-ellipse {
+  position: fixed;
+  right: 40px;
+  bottom: 120px;
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  background: radial-gradient(circle at top, #ffffff33, #00000066);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.santa-ellipse img {
+  width: 85%;
+  animation: floatSanta 4s ease-in-out infinite;
+}
+
+@keyframes floatSanta {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
