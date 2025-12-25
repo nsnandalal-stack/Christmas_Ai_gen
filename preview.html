@@ -1,25 +1,25 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Preview</title>
+  <title>Christmas Card Preview</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<div class="envelope open">
+<div class="envelope" id="envelope">
   <div class="flap"></div>
   <div class="letter">
     <div id="previewCard" class="card"></div>
 
-    <div class="preview-actions">
+    <div class="actions">
       <button onclick="shareWhatsApp()">WhatsApp</button>
-      <button onclick="openInstagram()">Instagram</button>
       <button onclick="copyLink()">Copy Link</button>
+      <button onclick="openInstagram()">Instagram</button>
     </div>
   </div>
 </div>
 
-<script src="preview.js" defer></script>
+<script src="preview.js"></script>
 </body>
 </html>
