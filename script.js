@@ -12,14 +12,11 @@ setInterval(() => {
   cardImage.src = images[current];
 }, 4000);
 
-document.getElementById("nameInput").oninput = e => {
-  document.getElementById("title").innerText =
-    "Merry Christmas 🎄 — " + e.target.value;
-};
+nameInput.oninput = e =>
+  title.innerText = `Merry Christmas 🎄 — ${e.target.value}`;
 
-document.getElementById("msgInput").oninput = e => {
-  document.getElementById("message").innerText = e.target.value;
-};
+msgInput.oninput = e =>
+  message.innerText = e.target.value;
 
 function downloadCard() {
   import("https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js")
@@ -33,9 +30,15 @@ function downloadCard() {
     });
 }
 
+function copyPreviewLink() {
+  const link = `${location.origin}${location.pathname.replace("index.html","")}preview.html?name=${encodeURIComponent(nameInput.value)}&msg=${encodeURIComponent(msgInput.value)}`;
+  navigator.clipboard.writeText(link);
+  alert("Preview link copied!");
+}
+
 function shareWhatsApp() {
-  const url = location.origin + "/preview.html" + location.search;
-  window.open(`https://wa.me/?text=${encodeURIComponent(url)}`);
+  const link = `${location.origin}${location.pathname.replace("index.html","")}preview.html?name=${encodeURIComponent(nameInput.value)}&msg=${encodeURIComponent(msgInput.value)}`;
+  window.open(`https://wa.me/?text=${encodeURIComponent(link)}`);
 }
 
 function openInstagram() {
