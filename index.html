@@ -1,43 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Merry Christmas</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="style.css">
-<link rel="manifest" href="manifest.json">
-<meta name="theme-color" content="#b30000">
+  <meta charset="UTF-8" />
+  <title>Christmas Card Maker</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="manifest" href="manifest.json" />
+  <meta name="theme-color" content="#b30000" />
 </head>
+
 <body>
 
-<div class="snow"></div><div class="snow snow2"></div><div class="snow snow3"></div>
+  <!-- Snow -->
+  <div class="snow"></div>
+  <div class="snow snow2"></div>
+  <div class="snow snow3"></div>
 
-<div class="overlay candle-glow">
-  <h1>🎄 Merry Christmas 🎄</h1>
+  <div class="overlay candle-glow">
 
-  <div class="jesus-frame">
-    <img id="jesusGif" src="gifs/jesus1.gif" alt="Nativity">
+    <!-- Language Toggle -->
+    <div class="lang-toggle">
+      <button onclick="setLang('en')">EN</button>
+      <button onclick="setLang('ml')">ML</button>
+    </div>
+
+    <h1 id="title">🎄 Merry Christmas 🎄</h1>
+
+    <!-- Jesus Birth GIF Frame -->
+    <div class="jesus-frame">
+      <img id="jesusGif" src="gifs/jesus1.gif" alt="Jesus Birth">
+    </div>
+
+    <p id="defaultWish">
+      May the birth of Jesus fill your heart with peace, love, and hope.
+    </p>
+
+    <input id="senderName" placeholder="Your name" />
+    <textarea id="userWish" placeholder="Your Christmas message..."></textarea>
+
+    <div class="buttons">
+      <button onclick="share()">Create & Share Card</button>
+      <button onclick="downloadCard()">Download Card as Image</button>
+      <button id="editBtn" onclick="resetCard()" style="display:none;">
+        Edit & Send Your Own Card
+      </button>
+    </div>
+
   </div>
 
-  <p id="defaultWish">
-    May the birth of Jesus fill your heart with peace, love, and hope.
-  </p>
+  <canvas id="cardCanvas" width="1080" height="1080" style="display:none;"></canvas>
 
- <input id="senderName" placeholder="Your name" />
-
-<textarea id="userWish" placeholder="Your Christmas message..."></textarea>
-
-<div class="buttons">
-  <button onclick="share()">Share</button>
-</div>
-
-
-  <div class="buttons">
-    <button onclick="shareWhatsApp()">Share on WhatsApp</button>
-    <button onclick="copyLink()">Copy Share Link</button>
-  </div>
-</div>
-
-<script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
