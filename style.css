@@ -4,12 +4,11 @@ body {
   font-family: 'Noto Serif Malayalam', serif;
   background: radial-gradient(circle at top, #1e3c72, #0b1d33);
   color: #fff;
-
   overflow-x: hidden;
   overflow-y: auto;
 }
 
-/* Snow animation */
+/* Snow */
 .snow {
   position: fixed;
   inset: -50% 0 0 0;
@@ -79,8 +78,7 @@ input, textarea {
 
 .actions {
   display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
+  gap: 12px;
   margin-top: 16px;
   justify-content: center;
 }
