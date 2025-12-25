@@ -5,10 +5,7 @@
   <title>Christmas Card Maker</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!-- Malayalam-friendly serif -->
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Malayalam&display=swap" rel="stylesheet">
-
-  <!-- Icons -->
   <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
 
@@ -17,25 +14,29 @@
 
 <body>
 
-  <!-- Snow background -->
+  <!-- Snow -->
   <div class="snow"></div>
   <div class="snow snow2"></div>
 
-  <!-- Corner Santa -->
-  <div class="corner-santa">
-    <img src="assets/how-old-is-santa-claus.avif" alt="Santa Claus">
-  </div>
-
   <main class="app">
 
-    <!-- Card -->
-    <section class="card" id="card">
-      <img id="cardImage" alt="Santa Christmas Image" />
-      <h2 id="cardName">Merry Christmas 🎄</h2>
-      <p id="cardMessage">
-        May this Christmas bring peace, love, and joy.
-      </p>
-    </section>
+    <div class="layout">
+
+      <!-- Card -->
+      <section class="card" id="card">
+        <img id="cardImage" alt="Santa Christmas Image" />
+        <h2 id="cardName">Merry Christmas 🎄</h2>
+        <p id="cardMessage">
+          May this Christmas bring peace, love, and joy.
+        </p>
+      </section>
+
+      <!-- Santa beside card -->
+      <div class="side-santa">
+        <img src="assets/how-old-is-santa-claus.avif" alt="Santa Claus">
+      </div>
+
+    </div>
 
     <!-- Inputs -->
     <input id="nameInput" placeholder="Your name / നിങ്ങളുടെ പേര്" />
