@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Christmas Card Maker</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <!-- Font -->
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Malayalam&display=swap" rel="stylesheet">
@@ -13,12 +13,12 @@
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
 
   <!-- CSS -->
-  <link rel="stylesheet" href="./style.css">
+  <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
 
-  <!-- Snow background -->
+  <!-- Snow -->
   <div class="snow"></div>
   <div class="snow snow2"></div>
 
@@ -27,8 +27,8 @@
     <div class="layout">
 
       <!-- Card -->
-      <section class="card">
-        <img src="./how-old-is-santa-claus.jpg" alt="Santa Christmas Image">
+      <section class="card" id="card">
+        <img src="how-old-is-santa-claus.jpg" alt="Santa Christmas Image" />
         <h2 id="cardName">Merry Christmas 🎄</h2>
         <p id="cardMessage">
           May this Christmas bring peace, love, and joy.
@@ -37,13 +37,13 @@
 
       <!-- Santa beside card -->
       <div class="side-santa">
-        <img src="./how-old-is-santa-claus.jpg" alt="Santa">
+        <img src="how-old-is-santa-claus.jpg" alt="Santa Claus" />
       </div>
 
     </div>
 
     <!-- Inputs -->
-    <input id="nameInput" placeholder="Your name / നിങ്ങളുടെ പേര്">
+    <input id="nameInput" placeholder="Your name / നിങ്ങളുടെ പേര്" />
     <textarea id="msgInput" placeholder="Your Christmas message / നിങ്ങളുടെ സന്ദേശം"></textarea>
 
     <!-- Actions -->
@@ -59,9 +59,9 @@
 
   </main>
 
-  <canvas id="canvas" width="1080" height="1350" style="display:none"></canvas>
+  <canvas id="canvas" width="1080" height="1350" hidden></canvas>
 
   <!-- JS -->
-  <script src="./script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
