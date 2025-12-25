@@ -18,12 +18,20 @@ const cardMessage = document.getElementById("cardMessage");
 const nameInput = document.getElementById("nameInput");
 const msgInput = document.getElementById("msgInput");
 
-function createCard() {
-  const name = nameInput.value || "Merry Christmas 🎄";
-  const msg = msgInput.value || "May this Christmas bring peace and joy.";
+/* LIVE PREVIEW */
+nameInput.addEventListener("input", () => {
+  cardName.innerText = nameInput.value || "Merry Christmas 🎄";
+});
 
-  cardName.innerText = name;
-  cardMessage.innerText = msg;
+msgInput.addEventListener("input", () => {
+  cardMessage.innerText = msgInput.value ||
+    "May this Christmas bring peace, love, and joy.";
+});
+
+/* CREATE CARD (URL update) */
+function createCard() {
+  const name = cardName.innerText;
+  const msg = cardMessage.innerText;
 
   const url =
     `${location.origin}${location.pathname}?` +
@@ -32,11 +40,23 @@ function createCard() {
   history.replaceState(null, "", url);
 }
 
-function shareCard() {
+/* SHARE */
+function shareLink() {
   navigator.clipboard.writeText(location.href);
   alert("Card link copied. Share anywhere.");
 }
 
+function shareWhatsApp() {
+  const text = `🎄 Christmas Card\n${location.href}`;
+  window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, "_blank");
+}
+
+function shareInstagram() {
+  navigator.clipboard.writeText(location.href);
+  alert("Instagram doesn’t allow direct sharing.\nLink copied — paste in DM, bio, or story.");
+}
+
+/* DOWNLOAD */
 function downloadCard() {
   const canvas = document.getElementById("canvas");
   const ctx = canvas.getContext("2d");
@@ -46,7 +66,7 @@ function downloadCard() {
   img.src = cardImage.src;
 
   img.onload = () => {
-    ctx.fillStyle = "#ffffff";
+    ctx.fillStyle = "#fff";
     ctx.fillRect(0,0,canvas.width,canvas.height);
     ctx.drawImage(img, 0, 0, canvas.width, 600);
 
@@ -74,14 +94,12 @@ function wrap(ctx, text, x, y, max, lh) {
       ctx.fillText(line, x, y);
       line = w + " ";
       y += lh;
-    } else {
-      line = test;
-    }
+    } else line = test;
   }
   ctx.fillText(line, x, y);
 }
 
-/* Load shared card */
+/* LOAD FROM SHARED LINK */
 const params = new URLSearchParams(location.search);
 if (params.get("name")) {
   cardName.innerText = params.get("name");
@@ -89,4 +107,3 @@ if (params.get("name")) {
   imgIndex = parseInt(params.get("img")) || 0;
   cardImage.src = images[imgIndex % images.length];
 }
-
