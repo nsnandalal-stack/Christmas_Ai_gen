@@ -1,55 +1,123 @@
-const nameInput = document.getElementById("nameInput");
-const msgInput = document.getElementById("msgInput");
-const cardName = document.getElementById("cardName");
-const cardMessage = document.getElementById("cardMessage");
-
-/* Live preview */
-nameInput.addEventListener("input", () => {
-  cardName.textContent = nameInput.value || "Merry Christmas 🎄";
-});
-
-msgInput.addEventListener("input", () => {
-  cardMessage.textContent =
-    msgInput.value || "May this Christmas bring peace, love, and joy.";
-});
-
-/* WhatsApp */
-function shareWhatsApp() {
-  const text = `🎄 Merry Christmas!\n${location.href}`;
-  window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, "_blank");
+* {
+  box-sizing: border-box;
 }
 
-/* Instagram */
-function shareInstagram() {
-  navigator.clipboard.writeText(location.href);
-  alert("Link copied. Paste it in Instagram DM, bio, or story.");
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: 'Noto Serif Malayalam', serif;
+  background: radial-gradient(circle at top, #1e3c72, #0b1d33);
+  color: white;
+  overflow-x: hidden;
 }
 
-/* Download */
-function downloadCard() {
-  const canvas = document.getElementById("canvas");
-  const ctx = canvas.getContext("2d");
+/* Snow */
+.snow {
+  position: fixed;
+  inset: -50% 0 0 0;
+  background-image:
+    radial-gradient(2px 2px at 20px 30px, white 50%, transparent 50%),
+    radial-gradient(1.5px 1.5px at 80px 120px, white 50%, transparent 50%);
+  background-size: 140px 140px;
+  animation: snow 20s linear infinite;
+  opacity: 0.6;
+  z-index: 0;
+}
 
-  const img = new Image();
-  img.src = "./how-old-is-santa-claus.jpg";
+.snow2 {
+  animation-duration: 35s;
+  opacity: 0.35;
+}
 
-  img.onload = () => {
-    ctx.fillStyle = "#ffffff";
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
+@keyframes snow {
+  from { transform: translateY(-50%); }
+  to { transform: translateY(50%); }
+}
 
-    ctx.drawImage(img, 0, 0, canvas.width, 720);
+/* Layout */
+.container {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
 
-    ctx.fillStyle = "#2b2b2b";
-    ctx.textAlign = "center";
-    ctx.font = "bold 64px Georgia";
-    ctx.fillText(cardName.textContent, canvas.width / 2, 860);
+/* Card */
+.card {
+  background: linear-gradient(180deg, #ffffff, #fffaf0);
+  color: #2b2b2b;
+  border-radius: 18px;
+  padding: 28px 24px;
+  width: 100%;
+  max-width: 380px;
+  text-align: center;
+  box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+  margin-bottom: 16px;
+}
 
-    ctx.font = "44px Georgia";
-    ctx.fillText(cardMessage.textContent, canvas.width / 2, 940);
+.card h1 {
+  margin: 0 0 12px;
+  font-size: 26px;
+}
 
-    const a = document.createElement("a");
-    a.download = "christmas-card.png";
-    a.href = canvas.toDataURL();
-    a.click();
-  };
+.card p {
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+/* Inputs */
+input, textarea {
+  width: 100%;
+  max-width: 380px;
+  margin-top: 12px;
+  padding: 12px;
+  border-radius: 10px;
+  border: none;
+  font-size: 15px;
+}
+
+textarea {
+  resize: none;
+  min-height: 90px;
+}
+
+/* Actions row */
+.actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 16px;
+  align-items: center;
+  justify-content: center;
+}
+
+button {
+  padding: 10px 16px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.wa {
+  background: #25d366;
+  color: #fff;
+}
+
+.ig {
+  background: #e1306c;
+  color: #fff;
 }
