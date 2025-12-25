@@ -1,140 +1,55 @@
-* { box-sizing: border-box; }
+const nameInput = document.getElementById("nameInput");
+const msgInput = document.getElementById("msgInput");
+const cardName = document.getElementById("cardName");
+const cardMessage = document.getElementById("cardMessage");
 
-body {
-  margin: 0;
-  min-height: 100vh;
-  font-family: 'Noto Serif Malayalam', Georgia, serif;
-  background: radial-gradient(circle at top, #1e3c72, #0b1d33);
-  overflow-x: hidden;
+/* Live preview */
+nameInput.addEventListener("input", () => {
+  cardName.textContent = nameInput.value || "Merry Christmas 🎄";
+});
+
+msgInput.addEventListener("input", () => {
+  cardMessage.textContent =
+    msgInput.value || "May this Christmas bring peace, love, and joy.";
+});
+
+/* WhatsApp */
+function shareWhatsApp() {
+  const text = `🎄 Merry Christmas!\n${location.href}`;
+  window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, "_blank");
 }
 
-/* Snow */
-.snow {
-  position: fixed;
-  inset: -50% 0 0 0;
-  background-image:
-    radial-gradient(2px 2px at 20px 30px, white 50%, transparent 50%),
-    radial-gradient(1.5px 1.5px at 80px 120px, white 50%, transparent 50%);
-  background-size: 140px 140px;
-  animation: snow 20s linear infinite;
-  opacity: 0.6;
-  z-index: 0;
+/* Instagram */
+function shareInstagram() {
+  navigator.clipboard.writeText(location.href);
+  alert("Link copied. Paste it in Instagram DM, bio, or story.");
 }
 
-.snow2 { animation-duration: 35s; opacity: 0.35; }
+/* Download card */
+function downloadCard() {
+  const canvas = document.getElementById("canvas");
+  const ctx = canvas.getContext("2d");
 
-@keyframes snow {
-  from { transform: translateY(-50%); }
-  to { transform: translateY(50%); }
-}
+  const img = new Image();
+  img.src = "how-old-is-santa-claus.jpg";
 
-/* App */
-.app {
-  position: relative;
-  z-index: 1;
-  min-height: 100vh;
-  padding: 32px 16px 40px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
+  img.onload = () => {
+    ctx.fillStyle = "#ffffff";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-/* Layout */
-.layout {
-  display: flex;
-  align-items: flex-end;
-  gap: 24px;
-}
+    ctx.drawImage(img, 0, 0, canvas.width, 720);
 
-/* Card */
-.card {
-  max-width: 360px;
-  background: linear-gradient(180deg, #ffffff 0%, #fffaf2 100%);
-  border-radius: 20px;
-  box-shadow: 0 30px 60px rgba(0,0,0,.5);
-  text-align: center;
-  overflow: hidden;
-}
+    ctx.fillStyle = "#2b2b2b";
+    ctx.textAlign = "center";
+    ctx.font = "bold 64px Georgia";
+    ctx.fillText(cardName.textContent, canvas.width / 2, 860);
 
-.card img {
-  width: 100%;
-  height: 240px;
-  object-fit: cover;
-}
+    ctx.font = "44px Georgia";
+    ctx.fillText(cardMessage.textContent, canvas.width / 2, 940);
 
-.card h2 {
-  margin: 16px 12px 6px;
-  font-size: 24px;
-  color: #2b2b2b;
-}
-
-.card p {
-  margin: 0 16px 22px;
-  font-size: 16px;
-  line-height: 1.6;
-  color: #444;
-}
-
-/* Santa beside card */
-.side-santa {
-  width: 160px;
-  animation: santaFloat 6s ease-in-out infinite;
-}
-
-.side-santa img {
-  width: 100%;
-}
-
-@keyframes santaFloat {
-  0% { transform: translateY(0); }
-  50% { transform: translateY(-8px); }
-  100% { transform: translateY(0); }
-}
-
-/* Inputs */
-input, textarea {
-  width: 100%;
-  max-width: 360px;
-  margin-top: 14px;
-  padding: 12px;
-  border-radius: 10px;
-  border: none;
-}
-
-/* Actions */
-.actions {
-  display: flex;
-  gap: 10px;
-  margin-top: 16px;
-}
-
-button {
-  padding: 10px 16px;
-  border-radius: 8px;
-  border: none;
-  cursor: pointer;
-}
-
-.icon-btn {
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  font-size: 18px;
-}
-
-.wa { background: #25d366; color: #fff; }
-.ig { background: #e1306c; color: #fff; }
-
-/* Mobile */
-@media (max-width: 768px) {
-  .layout {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .side-santa {
-    width: 140px;
-    margin-top: 12px;
-  }
+    const a = document.createElement("a");
+    a.download = "christmas-card.png";
+    a.href = canvas.toDataURL();
+    a.click();
+  };
 }
