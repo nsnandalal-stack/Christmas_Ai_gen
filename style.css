@@ -26,7 +26,7 @@ body {
 
 @keyframes snow {
   from { transform: translateY(-50%); }
-  to { transform: translateY(50%); }
+  to   { transform: translateY(50%); }
 }
 
 .container {
@@ -42,11 +42,11 @@ body {
   background: linear-gradient(#fff, #fffaf0);
   color: #2b2b2b;
   max-width: 380px;
+  width: 100%;
   border-radius: 18px;
   box-shadow: 0 25px 50px rgba(0,0,0,.5);
   text-align: center;
   overflow: hidden;
-  margin-bottom: 16px;
 }
 
 .card img {
@@ -61,6 +61,7 @@ body {
 
 .card p {
   margin: 0 16px 24px;
+  line-height: 1.6;
 }
 
 input, textarea {
@@ -74,6 +75,7 @@ input, textarea {
 
 .actions {
   display: flex;
+  flex-wrap: wrap;
   gap: 10px;
   margin-top: 16px;
 }
