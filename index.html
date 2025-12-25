@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <title>Christmas Card Maker</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
   <link rel="stylesheet" href="style.css" />
   <link rel="manifest" href="manifest.json" />
   <meta name="theme-color" content="#b30000" />
@@ -18,7 +19,6 @@
 
   <div class="overlay candle-glow">
 
-    <!-- Language Toggle -->
     <div class="lang-toggle">
       <button onclick="setLang('en')">EN</button>
       <button onclick="setLang('ml')">ML</button>
@@ -26,9 +26,9 @@
 
     <h1 id="title">🎄 Merry Christmas 🎄</h1>
 
-    <!-- Jesus Birth GIF Frame -->
+    <!-- Jesus / Christmas GIF frame -->
     <div class="jesus-frame">
-      <img id="jesusGif" src="gifs/jesus1.gif" alt="Jesus Birth">
+      <img id="jesusGif" alt="Christmas GIF">
     </div>
 
     <p id="defaultWish">
@@ -48,7 +48,7 @@
 
   </div>
 
-  <canvas id="cardCanvas" width="1080" height="1080" style="display:none;"></canvas>
+  <canvas id="cardCanvas" width="1080" height="1350" style="display:none;"></canvas>
 
   <script src="script.js"></script>
 </body>
