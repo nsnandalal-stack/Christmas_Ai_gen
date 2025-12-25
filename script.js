@@ -13,28 +13,21 @@ setInterval(() => {
   cardImage.src = images[imgIndex];
 }, 5000);
 
-const card = document.getElementById("card");
 const cardName = document.getElementById("cardName");
 const cardMessage = document.getElementById("cardMessage");
 const nameInput = document.getElementById("nameInput");
 const msgInput = document.getElementById("msgInput");
 
-function setTemplate(tpl) {
-  card.className = `card ${tpl}`;
-}
-
 function createCard() {
   const name = nameInput.value || "Merry Christmas 🎄";
   const msg = msgInput.value || "May this Christmas bring peace and joy.";
-  const tpl = document.getElementById("template").value;
 
   cardName.innerText = name;
   cardMessage.innerText = msg;
-  setTemplate(tpl);
 
   const url =
     `${location.origin}${location.pathname}?` +
-    `name=${encodeURIComponent(name)}&msg=${encodeURIComponent(msg)}&tpl=${tpl}&img=${imgIndex}`;
+    `name=${encodeURIComponent(name)}&msg=${encodeURIComponent(msg)}&img=${imgIndex}`;
 
   history.replaceState(null, "", url);
 }
@@ -53,7 +46,7 @@ function downloadCard() {
   img.src = cardImage.src;
 
   img.onload = () => {
-    ctx.fillStyle = "#fff";
+    ctx.fillStyle = "#ffffff";
     ctx.fillRect(0,0,canvas.width,canvas.height);
     ctx.drawImage(img, 0, 0, canvas.width, 600);
 
@@ -81,7 +74,9 @@ function wrap(ctx, text, x, y, max, lh) {
       ctx.fillText(line, x, y);
       line = w + " ";
       y += lh;
-    } else line = test;
+    } else {
+      line = test;
+    }
   }
   ctx.fillText(line, x, y);
 }
@@ -91,7 +86,6 @@ const params = new URLSearchParams(location.search);
 if (params.get("name")) {
   cardName.innerText = params.get("name");
   cardMessage.innerText = params.get("msg");
-  setTemplate(params.get("tpl") || "classic");
   imgIndex = parseInt(params.get("img")) || 0;
   cardImage.src = images[imgIndex % images.length];
 }
